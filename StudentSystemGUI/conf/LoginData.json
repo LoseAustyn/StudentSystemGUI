@@ -1,0 +1,66 @@
+{
+  "0": {
+    "Account": "admin",
+    "Password": "123",
+    "Permission": "admin",
+    "AdminId": 1,
+    "Name": "陈",
+    "Sex": "男",
+    "Date": "1999-11-16",
+    "Nation": "汉族"
+  },
+  "1": {
+    "Account": "teacher1",
+    "Password": "123",
+    "Permission": "teacher",
+    "TeacherId": 1,
+    "Name": "李老师",
+    "Sex": "男",
+    "Date": "1993-6-20",
+    "Nation": "汉族"
+  },
+  "2": {
+    "Account": "student1",
+    "Password": "123",
+    "Permission": "student",
+    "StudentId": 1,
+    "Name": "张三",
+    "Sex": "男",
+    "Date": "1999-9-15",
+    "Nation": "汉族",
+    "Class": "18物联网工程2"
+
+  },
+  "3": {
+    "Account": "student2",
+    "Password": "123",
+    "Permission": "student",
+    "StudentId": 2,
+    "Name": "李四",
+    "Sex": "男",
+    "Date": "2000-1-10",
+    "Nation": "汉族",
+    "Class": "18计算机科学与技术1"
+  },
+  "4": {
+    "Account": "student3",
+    "Password": "123",
+    "Permission": "student",
+    "StudentId": 3,
+    "Name": "王五",
+    "Sex": "男",
+    "Date": "1999-3-9",
+    "Nation": "汉族",
+    "Class": "18物联网工程1"
+  },
+  "5": {
+    "Account": "teacher2",
+    "Password": "123",
+    "Permission": "teacher",
+    "TeacherId": 2,
+    "Name": "刘老师",
+    "Sex": "女",
+    "Date": "1989-11-5",
+    "Nation": "汉族"
+  }
+}
