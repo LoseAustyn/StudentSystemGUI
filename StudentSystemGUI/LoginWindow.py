@@ -152,14 +152,14 @@ class LoginWindow(QWidget):
         self.LoadLoginData()
         try:
             while 1:
-                if(self.LoginData[str(i)]["Account"] == self.AccountInput.toPlainText()):
-                    if(self.LoginData[str(i)]["Password"] == self.PasswordInput.toPlainText()):
+                if(self.LoginData["User"][i]["Account"] == self.AccountInput.toPlainText()):
+                    if(self.LoginData["User"][i]["Password"] == self.PasswordInput.toPlainText()):
                         #   为初始化界面传入权限
-                        self.LoginPermission = self.LoginData[str(i)]["Permission"]
+                        self.LoginPermission = self.LoginData["User"][i]["Permission"]
                         #   为初始化界面传入数据ID
-                        self.InitMain(permission=self.LoginPermission,DataId=str(i))
+                        self.InitMain(permission=self.LoginPermission,DataId=i)
                         return 1
-                    if(self.LoginData[str(i)]["Password"] != self.PasswordInput.toPlainText()):
+                    if(self.LoginData["User"][i]["Password"] != self.PasswordInput.toPlainText()):
                         self.ErrorMessageBox("登录失败，请检查用户名和密码")
                         return 0
                 else:
@@ -194,8 +194,6 @@ class LoginWindow(QWidget):
         MessageBox.addButton(QPushButton("知道了"),QMessageBox.YesRole)
         MessageBox.exec_()
 
-
-
     #   窗口生成在屏幕中间
     def center(self):
         #   计算显示屏的大小
@@ -219,10 +217,11 @@ class LoginWindow(QWidget):
     #   重写鼠标移动事件，让没有标题栏的界面能通过按住界面移动
     def mouseMoveEvent(self,e:QMouseEvent):
         try:
-            #   鼠标移动到位置(e.pos())与原来所在的位置(self._startPos)之差（两者的x,y组合起来的参数之差）即为窗口要移动的距离(self._endPos)
-            self._endPos = e.pos() - self._startPos
-            #   获取窗口位置(self.pos())并移动窗口
-            self.move(self.pos() + self._endPos)
+            if (self._tracking == True):
+                #   鼠标移动到位置(e.pos())与原来所在的位置(self._startPos)之差（两者的x,y组合起来的参数之差）即为窗口要移动的距离(self._endPos)
+                self._endPos = e.pos() - self._startPos 
+                #   获取窗口位置(self.pos())并移动窗口
+                self.move(self.pos() + self._endPos)
         except Exception:
             pass
 
@@ -230,7 +229,7 @@ class LoginWindow(QWidget):
     def mouseReleaseEvent(self,e:QMouseEvent):
         #   检测鼠标松开左键
         if e.button() == Qt.LeftButton:
-            #   将重写鼠标事件中用到的参数重新整理好
+            #   鼠标事件完成，所有的参数复位
             self._tracking = False
             self._startPos = None
             self._endPos = None

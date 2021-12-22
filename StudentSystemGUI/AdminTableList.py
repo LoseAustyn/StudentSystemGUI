@@ -1,3 +1,4 @@
+
 import sys
 import qtawesome
 import json
@@ -5,7 +6,7 @@ from traceback import print_exc
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-import ScoreAddBox
+import AdminScoreAddBox
 
 #   本类为教师提供查看以及管理科目分数的功能
 class TeacherTable(QWidget):
@@ -41,7 +42,7 @@ class TeacherTable(QWidget):
         for num in range(len(self.ScoreData)):
             self.ComboBox.addItem(list(self.ScoreData.keys())[num])
         
-        #   构建表格模型
+        #   构建9行表格模型
         self.ConstrustModel(self.ComboBox.currentText())
         self.ShowTableView()
 
@@ -218,7 +219,7 @@ class TeacherTable(QWidget):
             self.MessageBox("保存失败！请检查填入的数据！")
 
     def AddEvent(self):
-        self.AddBox=ScoreAddBox.ScoreAddBox()
+        self.AddBox=AdminScoreAddBox.ScoreAddBox()
         self.close()
         self.AddBox.show()
 

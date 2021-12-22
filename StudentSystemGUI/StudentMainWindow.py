@@ -9,11 +9,15 @@ import LoginWindow
 import Information
 import StudentScoreTable
 from traceback import print_exc
+import ScoreAnalyzBox
+import DVStudent
 
 class StudentMainWindow(QMainWindow):
+
     def __init__(self,DataId):
         super().__init__()
         self.initUI(DataId)
+
     #   主界面UI
     def initUI(self,DataId):
 
@@ -99,7 +103,7 @@ class StudentMainWindow(QMainWindow):
         self.ScoreAnalyzButton.setToolTip("查看成绩分析")
         self.ScoreAnalyzButton.setCursor(QCursor(Qt.PointingHandCursor))
         #   课程成绩分析
-        #self.ScoreAnalyzButton.clicked.connect()
+        self.ScoreAnalyzButton.clicked.connect(self.ShowScoreAnalyz)
 
         #   退出登录
         self.QuitLoginButton = QPushButton(qtawesome.icon('fa.sign-out', color='white'),"",self)
@@ -125,8 +129,15 @@ class StudentMainWindow(QMainWindow):
     #   显示个人成绩
     def ShowScoreTable(self):
         self.LoadLoginData()
-        self.ScoreTable=StudentScoreTable.StudentTable(self.LoginData[self.DataId]["StudentId"])
+        self.ScoreTable = StudentScoreTable.StudentTable(self.LoginData["User"][self.DataId]["StudentId"])
         self.ScoreTable.show()
+
+    #   显示成绩分析
+    def ShowScoreAnalyz(self):
+        self.LoadLoginData()
+        self.ScoreAnalyz=ScoreAnalyzBox.ScoreAnalyzBox(self.DataId)
+        DVStudent.score_radarChart(self.LoginData["User"][self.DataId]["StudentId"])
+        self.ScoreAnalyz.show()
 
     #   直接退出
     def Quit(self):
@@ -137,6 +148,10 @@ class StudentMainWindow(QMainWindow):
             pass
         try:
             self.Information.close()
+        except Exception:
+            pass
+        try:
+            self.ScoreAnalyz.close()
         except Exception:
             pass
 
@@ -150,6 +165,10 @@ class StudentMainWindow(QMainWindow):
             pass
         try:
             self.Information.close()
+        except Exception:
+            pass
+        try:
+            self.ScoreAnalyz.close()
         except Exception:
             pass
         self.Login.show()
@@ -201,7 +220,7 @@ class StudentMainWindow(QMainWindow):
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-    window = StudentMainWindow("2")
+    window = StudentMainWindow(2)
     #   显示主窗口
     window.show()
     sys.exit(app.exec_())

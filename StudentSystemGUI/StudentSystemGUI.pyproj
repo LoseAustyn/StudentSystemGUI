@@ -25,8 +25,25 @@
     <Folder Include="conf\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddBox.py" />
+    <Compile Include="PreBox.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScoreAddBox.py" />
     <Compile Include="AdminMainWindow.py" />
+    <Compile Include="AdminScoreAddBox.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdminTableList.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdminUserType.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScoreAnalyzBox.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScorePre.py" />
+    <Compile Include="ScoreAnalyz.py" />
     <Compile Include="Information.py" />
     <Compile Include="LoginWindow.py" />
     <Compile Include="MainSolution.py" />
@@ -34,10 +51,19 @@
     <Compile Include="StudentScoreTable.py" />
     <Compile Include="TeacherMainWindow.py" />
     <Compile Include="TeacherTableList.py" />
+    <Compile Include="UserAddBox.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserTableList.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DVStudent.py" />
+    <Compile Include="DVTeacher.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="conf\LoginData.json" />
     <Content Include="conf\MonthScore.json" />
+    <Content Include="conf\学生成绩表.csv" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

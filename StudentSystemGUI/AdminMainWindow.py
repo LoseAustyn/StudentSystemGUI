@@ -6,7 +6,9 @@ import json
 import qtawesome
 import LoginWindow
 import Information
+import AdminTableList
 from traceback import print_exc
+import AdminUserType
 
 class AdminMainWindow(QMainWindow):
     def __init__(self,DataId):
@@ -45,7 +47,7 @@ class AdminMainWindow(QMainWindow):
         self.QuitButton.setGeometry(690,10,20,20)
         self.QuitButton.setToolTip("退出")
         self.QuitButton.setCursor(QCursor(Qt.PointingHandCursor))
-        self.QuitButton.clicked.connect(self.close)
+        self.QuitButton.clicked.connect(self.Quit)
 
         #   最小化按钮
         self.MinimizeButton = QPushButton(qtawesome.icon('fa.minus', color='white'),"",self)
@@ -75,17 +77,17 @@ class AdminMainWindow(QMainWindow):
         #   查看个人信息
         self.UserDataButton.clicked.connect(self.ShowInformation)
 
-        #   科目增删
+        #   科目管理
         self.LessonSetupButton = QPushButton(qtawesome.icon('fa.book', color='white'),"",self)
         self.LessonSetupButton.setStyleSheet(("background-color:rgba(147,112,219,0.9);border:0px;color:white;border-radius:5px"))
         self.LessonSetupButton.setIconSize(QSize(40,40))
         self.LessonSetupButton.setGeometry(200,50,160,400)
-        self.LessonSetupButton.setText("科目增删")
+        self.LessonSetupButton.setText("科目管理")
         self.LessonSetupButton.setFont(QFont("黑体",10))
-        self.LessonSetupButton.setToolTip("科目增删")
+        self.LessonSetupButton.setToolTip("科目管理")
         self.LessonSetupButton.setCursor(QCursor(Qt.PointingHandCursor))
-        #   科目增删
-        #self.LessonSetupButton.clicked.connect()
+        #   科目管理
+        self.LessonSetupButton.clicked.connect(self.ShowScoreTable)
 
         #   用户管理
         self.UserSetupButton = QPushButton(qtawesome.icon('fa.address-book', color='white'),"",self)
@@ -96,8 +98,8 @@ class AdminMainWindow(QMainWindow):
         self.UserSetupButton.setFont(QFont("黑体",10))
         self.UserSetupButton.setToolTip("用户管理")
         self.UserSetupButton.setCursor(QCursor(Qt.PointingHandCursor))
-        #   课程成绩分析
-        #self.UserSetupButton.clicked.connect()
+        #   用户管理
+        self.UserSetupButton.clicked.connect(self.ShowUserTable)
 
         #   退出登录
         self.QuitLoginButton = QPushButton(qtawesome.icon('fa.sign-out', color='white'),"",self)
@@ -120,10 +122,73 @@ class AdminMainWindow(QMainWindow):
         self.Information = Information.Information(self.DataId)
         self.Information.show()
 
+    #   查看科目成绩
+    def ShowScoreTable(self):
+        self.ScoreTable = AdminTableList.TeacherTable()
+        self.ScoreTable.show()
+
+    def ShowUserTable(self):
+        self.UserTypeTable=AdminUserType.UserTypeBox()
+        self.UserTypeTable.show()
+
+    #   直接退出
+    def Quit(self):
+        self.close()
+        try:
+            self.ScoreTable.close()
+        except Exception:
+            pass
+        try:
+            self.Information.close()
+        except Exception:
+            pass
+        try:
+            self.ScoreTable.AddBox.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.UserTableList.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.UserTableList.UserAdd.close()
+        except Exception:
+            pass
+
+
     #   退出登录
     def QuitLogin(self):
         self.Login = LoginWindow.LoginWindow()
         self.close()
+        try:
+            self.ScoreTable.close()
+        except Exception:
+            pass
+        try:
+            self.Information.close()
+        except Exception:
+            pass
+        try:
+            self.ScoreTable.AddBox.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.UserTableList.close()
+        except Exception:
+            pass
+        try:
+            self.UserTypeTable.UserTableList.UserAdd.close()
+        except Exception:
+            pass
+
         self.Login.show()
             
     #   窗口生成在屏幕中间
@@ -167,7 +232,7 @@ class AdminMainWindow(QMainWindow):
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-    window = AdminMainWindow("0")
+    window = AdminMainWindow(0)
     #   显示主窗口
     window.show()
     sys.exit(app.exec_())

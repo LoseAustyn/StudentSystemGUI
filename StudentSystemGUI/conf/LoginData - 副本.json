@@ -29,7 +29,7 @@
       "Sex": "男",
       "Date": "1999-9-15",
       "Nation": "汉族",
-      "Class": "高三1班"
+      "Class": "18物联网工程2"
     },
     {
       "Account": "student2",
@@ -40,7 +40,7 @@
       "Sex": "男",
       "Date": "2000-1-10",
       "Nation": "汉族",
-      "Class": "高三1班"
+      "Class": "18计算机科学与技术1"
     },
     {
       "Account": "student3",
@@ -48,10 +48,10 @@
       "Permission": "student",
       "StudentId": 3,
       "Name": "王五",
-      "Sex": "女",
+      "Sex": "男",
       "Date": "1999-3-9",
       "Nation": "汉族",
-      "Class": "高三1班"
+      "Class": "18物联网工程1"
     },
     {
       "Account": "teacher2",
@@ -59,7 +59,7 @@
       "Permission": "teacher",
       "TeacherId": 2,
       "Name": "刘老师",
-      "Sex": "男",
+      "Sex": "女",
       "Date": "1989-11-5",
       "Nation": "汉族"
     }
